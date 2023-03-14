@@ -86,7 +86,7 @@ int main(void)
     u32 alpha = 0x000000FF;
 
     u32 final = RGBA(red, green, blue, alpha);
-    printf("%zu %zu %zu %zu %zu\n", red, green, blue, alpha, final);
+    printf("%i %i %i %i %i\n", red, green, blue, alpha, final);
 
     return 0;
 }
