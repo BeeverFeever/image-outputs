@@ -22,11 +22,11 @@ typedef struct {
     FILE* file;
 } image_t;
 
-#define RED(p)          ((p & 0xFF000000) >> 8*3)
-#define GREEN(p)        ((p & 0x00FF0000) >> 8*2)
-#define ALPHA(p)        ((p & 0x000000FF) >> 8*0)
-#define BLUE(p)         ((p & 0x0000FF00) >> 8*1)
-#define RGBA(r,g,b,a)   (((0x00000000 & r) << 8*3) || ((0x00000000 & g) << 8*2) || ((0x00000000 & b) << 8*1) || ((0x00000000 & a) << 8*0))
+#define RED(p)          ((0xFF000000 & (p))>>(8*3))
+#define GREEN(p)        ((0x00FF0000 & (p))>>(8*2))
+#define BLUE(p)         ((0x0000FF00 & (p))>>(8*1))
+#define ALPHA(p)        ((0x000000FF & (p))>>(8*0))
+#define RGBA(r,g,b,a)   ((((RED(r))&0xFF)<<(8*3)) | (((GREEN(g))&0xFF)<<(8*2)) | (((BLUE(b))&0xFF)<<(8*1)) | (((ALPHA(a))&0xFF)<<(8*0)))
 
 static inline int check_ft(file_type current, file_type correct) {
     return (current == correct) ? 0 : 1;
